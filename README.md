@@ -29,7 +29,7 @@ All checks are executed every time and **results are aggregated** before determi
 ## 🚦 Exit Codes
 
 | Exit Code | Meaning |
-|----------|--------|
+|----------|---------|
 | `0` | System is healthy |
 | `2` | System is unhealthy or usage error |
 
@@ -41,67 +41,95 @@ Designed to be **automation-friendly** (cron jobs, wrappers, CI hooks).
 
 ```bash
 ./incident_check.sh <process_name>
-🛠️ Examples
+
+---
+
+## 🧪 Examples
+
+```bash
 ./incident_check.sh ssh
 ./incident_check.sh nginx
 ./incident_check.sh fakeprocess
+```
+
 If no argument is provided:
 
+```text
 USAGE: ./incident_check.sh <process_name>
-📤 Sample Output
-✅ Healthy system
+```
+
+---
+
+## 📤 Sample Output
+
+### ✅ Healthy system
+
+```text
 OK: Process ssh is running
 OK: Disk usage is 23%
 OK: System load is 0.00
 FINAL STATUS: HEALTHY
-❌ Unhealthy system
+```
+
+### ❌ Unhealthy system
+
+```text
 CRITICAL: Process fakeprocess is NOT running
 OK: Disk usage is 23%
 OK: System load is 0.00
 FINAL STATUS: UNHEALTHY
-🔒 Constraints (Intentional)
-Linux commands only
+```
 
-Bash scripting
+---
 
-Exit-code–driven health signaling
+## 🔒 Constraints (Intentional)
 
-Not used by design:
+### Included
 
-Docker
+* Linux commands only
+* Bash scripting
+* Exit-code–driven health signaling
 
-Kubernetes
+### Not used by design
 
-Cloud services
+* Docker
+* Kubernetes
+* Cloud services
+* Monitoring agents
 
-Monitoring agents
+This keeps the script **portable, debuggable, and interview-relevant**.
 
-This keeps the script portable, debuggable, and interview-relevant.
+---
 
-🧠 Why this matters (SRE perspective)
-Mimics real on-call triage
+## 🧠 Why this matters (SRE perspective)
 
-Helps reproduce incidents quickly
+* Mimics **real on-call triage**
+* Helps reproduce incidents quickly
+* Distinguishes between:
 
-Distinguishes between:
+  * Process crashes
+  * Disk exhaustion
+  * CPU saturation
+* Prioritizes **clarity and correctness** over clever abstractions
 
-Process crashes
+---
 
-Disk exhaustion
+## 📂 Repository Structure
 
-CPU saturation
-
-Prioritizes clarity and correctness over clever abstractions
-
-📂 Repository Structure
+```text
 incident_check.sh   # Linux incident triage script
 README.md           # Project documentation
+```
 
-👩‍💻 Author Notes
+---
+
+## 👩‍💻 Author Notes
+
 Built to strengthen:
 
-Linux debugging fundamentals
+* Linux debugging fundamentals
+* Exit-code–driven automation
+* Incident-first thinking over tooling
 
-Exit-code–driven automation
-
-Incident-first thinking over tooling
+```
+```
